@@ -1,0 +1,55 @@
+version: 1
+applications:
+  # -- Backend -----
+  - backend:
+      phases:
+        preBuild:
+          commands:
+            - corepack enabled # very important to enable corepack
+            - npm ci --include=optional --cache .npm --prefer-offline
+        build:
+          commands:
+            - npx ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID
+    frontend:
+      phases:
+        build:
+          commands:
+            - echo "No Build step - static hosting of index.html"
+      artifacts:
+        baseDirectory: .
+        files:
+          - index.html
+      cache:
+        paths: []
+    appRoot: packages/backend
+  # -- Web App ---
+  - backend:
+      phases:
+        build:
+          commands:
+            - echo "No backend build step"
+    frontend:
+      phases:
+        preBuild:
+          commands:
+            - corepack enable
+            - npm rebuild lightningcss
+            - npm ci --include=optional --cache .npm --prefer-offline
+        build:
+          commands:
+            - npx turbo run build --filter=webapp
+        postBuild:
+          commands:
+            - echo "npx ampx generate outputs --branch $AWS_BRANCH --app-id $BACKEND_APP_ID"
+      artifacts:
+        baseDirectory: .next
+        files:
+          - "**/*"
+      cache:
+        paths: [
+          "node_modules/**/*",
+          "../../node_modules/**/*",
+          "../../packages/backend/node_modules/**/*",
+          ".next/cache/**/*"
+        ]
+    appRoot: apps/webapp
