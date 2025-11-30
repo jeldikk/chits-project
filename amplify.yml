@@ -5,7 +5,7 @@ applications:
       phases:
         preBuild:
           commands:
-            - corepack enabled # very important to enable corepack
+            - corepack enable # very important to enable corepack
             - npm ci --include=optional --cache .npm --prefer-offline
         build:
           commands:
