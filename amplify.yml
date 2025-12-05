@@ -35,6 +35,7 @@ applications:
             - corepack enable
             - npm rebuild lightningcss
             - npm ci --include=optional --cache .npm --prefer-offline
+            - npx ampx generate outputs --branch $AWS_BRANCH --app-id d3nvt0y8ytet7z
         build:
           commands:
             - npx turbo run build --filter=webapp
