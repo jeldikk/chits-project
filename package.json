@@ -23,5 +23,14 @@
   ],
   "dependencies": {
     "minimatch": "^10.1.1"
+  },
+  "copyFiles": [
+    {
+      "from": "packages/backend/amplify_outputs.json",
+      "to": "apps/webapp/amplify_outputs.json"
+    }
+  ],
+  "copyFilesSettings": {
+    "whenFileExists": "overwrite"
   }
 }
