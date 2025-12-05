@@ -39,9 +39,9 @@ applications:
         build:
           commands:
             - npx turbo run build --filter=webapp
-        postBuild:
-          commands:
-            - npx ampx generate outputs --branch $AWS_BRANCH --app-id d3nvt0y8ytet7z
+        # postBuild:
+        #   commands:
+        #     - npx ampx generate outputs --branch $AWS_BRANCH --app-id d3nvt0y8ytet7z
       artifacts:
         baseDirectory: .next
         files:
