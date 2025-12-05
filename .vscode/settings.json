@@ -1,0 +1,39 @@
+{
+  // General editor preferences
+  "editor.rulers": [140],
+  "files.insertFinalNewline": true,
+  "editor.formatOnSave": true,
+
+  // File exclusion to keep the file explorer clean
+  "files.exclude": {
+    "**/.git": true,
+    "**/build": true,
+    "**/amplify/backend/awscloudformation": true, // Hides auto-generated CFN templates
+    "amplify_outputs.json": true // This file is generated and usually not manually edited
+  },
+  
+  // Search exclusion for performance and cleaner results
+  "search.exclude": {
+    "**/.yarn": true,
+    "**/.pnp.*": true,
+    "amplify_outputs.json": true
+  },
+
+  // Linting and formatting setup (adjust based on your project's package manager and tools)
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "eslint.lintTask.enable": true,
+  
+  // TypeScript specific settings
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "typescript.enablePromptUseWorkspaceTsdk": true
+}
