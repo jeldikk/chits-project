@@ -1,18 +1,25 @@
 import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
-
+import { managerModel } from "./models/manager.model";
+import { cheetiModel } from "./models/cheeti.model";
+import { cheetiPaataModel } from "./models/cheeti-paata.model";
 /*== STEP 1 ===============================================================
 The section below creates a Todo database table with a "content" field. Try
 adding a new "isDone" field as a boolean. The authorization rule below
 specifies that any unauthenticated user can "create", "read", "update", 
 and "delete" any "Todo" records.
 =========================================================================*/
-const schema = a.schema({
-  Todo: a
-    .model({
-      content: a.string(),
-    })
-    .authorization((allow) => [allow.guest()]),
-});
+const schema = a
+  .schema({
+    Month: a.customType({
+      month: a.integer(),
+      year: a.integer(),
+    }),
+    CheetiStatus: a.enum(["READY", "IN_PROGRESS", "COMPLETED"]),
+    Manager: managerModel,
+    Cheeti: cheetiModel,
+    CheetiPaata: cheetiPaataModel,
+  })
+  .authorization((allow) => [allow.authenticated()]);
 
 export type Schema = ClientSchema<typeof schema>;
 
