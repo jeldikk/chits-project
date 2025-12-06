@@ -16,26 +16,28 @@ export async function getAuthUserDetails() {
     const authUser = await runWithAmplifyServerContext({
       nextServerContext: { cookies },
       operation: async (contextSpec) => {
-        console.log(contextSpec);
+        // console.log(contextSpec);
         const user = await getCurrentUser(contextSpec);
         const session = await fetchAuthSession(contextSpec);
         const attributes = await fetchUserAttributes(contextSpec);
-        console.log({ user, session, attributes });
+        // console.log({ user, session, attributes });
         const cognitoGroups = session.tokens?.accessToken.payload[
-          "cognito_groups"
+          "cognito:groups"
         ]! as string;
-        const isAdmin = cognitoGroups.includes("ADMIN");
+        const isAdmin = cognitoGroups && cognitoGroups.includes("ADMIN");
         return {
-          isAdmin,
+          isAdmin: Boolean(isAdmin),
           user,
         };
       },
     });
+    // console.log({ authUser });
     return {
       isAdmin: authUser.isAdmin,
       authUser: authUser.user,
     };
   } catch (err) {
+    console.log("Error in getting auth user details", err);
     return {
       isAdmin: false,
       authUser: null,
