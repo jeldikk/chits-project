@@ -25,6 +25,9 @@
     "paths": {
       "@/*": [
         "./*"
+      ],
+      "@/data-schema": [
+        "../../packages/backend/amplify/data/resource"
       ]
     }
   },
