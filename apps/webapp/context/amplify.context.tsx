@@ -2,10 +2,13 @@
 
 import { Amplify } from "aws-amplify";
 import { Authenticator } from "@aws-amplify/ui-react";
+import { parseAmplifyConfig } from "aws-amplify/utils";
 import config from "../amplify_outputs.json";
 import React from "react";
 
-Amplify.configure(config, {
+const parsedConfig = parseAmplifyConfig(config);
+
+Amplify.configure(parsedConfig, {
   ssr: true,
 });
 

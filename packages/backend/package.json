@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npx ampx sandbox --identifier chiti-dev",
+    "dev": "npx dotenvx run --env-file=.env.local -- ampx sandbox --identifier chiti-dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -15,6 +15,9 @@
     "./amplify": "./amplify/backend.ts"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.946.0",
+    "@aws-sdk/client-sqs": "^3.946.0",
+    "@dotenvx/dotenvx": "^1.51.1",
     "aws-amplify": "^6.15.8"
   },
   "devDependencies": {
