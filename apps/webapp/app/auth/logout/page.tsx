@@ -2,11 +2,14 @@
 
 import { useEffect } from "react";
 import useAuthDetailsContext from "@/hooks/auth-details.hook";
+import { logOutUser } from "@/redux/auth/auth.slice";
+import { useAppDispatch } from "@/redux/store";
 
 export default function LogoutPage() {
-  const authContext = useAuthDetailsContext();
+  // const authContext = useAuthDetailsContext();
+  const dispatch = useAppDispatch();
   useEffect(() => {
-    authContext.signOut();
+    dispatch(logOutUser());
   }, []);
 
   return <></>;

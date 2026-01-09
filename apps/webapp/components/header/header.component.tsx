@@ -1,13 +1,17 @@
 "use client";
 import useAuthDetailsContext from "@/hooks/auth-details.hook";
+import { selectAuthDetails, selectIsAdmin } from "@/redux/auth/auth.selectors";
+import { useAppSelector } from "@/redux/store";
 import Link from "next/link";
 
 export default function Header() {
-  const authContext = useAuthDetailsContext();
-  const { authUser } = authContext.authDetails;
-  console.log({ authContext, authUser });
+  const authDetails = useAppSelector(selectAuthDetails);
+  const isAdmin = useAppSelector(selectIsAdmin);
+  // const { authDetails } = useAuthDetailsContext();
+  // const { authUser, isAdmin } = authContext.authDetails;
+  console.log({ authDetails });
   return (
-    <header className="navbar bg-base-100 shadow-sm">
+    <header className="navbar shadow-sm ">
       <div className="flex-1">
         <a className="btn btn-ghost text-xl">Cheeti Paatalu</a>
       </div>
@@ -22,15 +26,18 @@ export default function Header() {
           <li>
             <Link href="/cheetilu">Cheetilu</Link>
           </li>
-          {!authUser ? (
+          {authDetails && isAdmin ? (
+            <li>
+              <Link href="/migration">Migration</Link>
+            </li>
+          ) : null}
+          {!authDetails ? (
             <li>
               <Link href="/auth/login">Login</Link>
             </li>
-          ) : (
-            <></>
-          )}
+          ) : null}
         </ul>
-        {authUser ? (
+        {authDetails ? (
           <div className="dropdown dropdown-end">
             <div
               tabIndex={0}
@@ -43,7 +50,7 @@ export default function Header() {
             </div>
             <ul
               tabIndex={-1}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               <li>
                 <a className="justify-between">
