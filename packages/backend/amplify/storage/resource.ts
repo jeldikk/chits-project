@@ -1,4 +1,3 @@
-import { config } from "../config";
 import { defineStorage, defineFunction } from "@aws-amplify/backend";
 
 export const uploadHandlerFunction = defineFunction({
