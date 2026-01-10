@@ -48,6 +48,12 @@ backend.sqsProcessorLambda.resources.lambda.addEventSource(
 myQueue.grantConsumeMessages(backend.sqsProcessorLambda.resources.lambda);
 myQueue.grantSendMessages(backend.uploadHandlerFunction.resources.lambda);
 
+backend.uploadHandlerFunction.addEnvironment("SQS_QUEUE_URL", myQueue.queueUrl);
+backend.uploadHandlerFunction.addEnvironment(
+  "SQS_QUEUE_NAME",
+  myQueue.queueName
+);
+
 const apiStack = backend.createStack("api-stack");
 
 const restApi = new RestApi(apiStack, `migration-${process.env.ENV}-rest-api`, {
