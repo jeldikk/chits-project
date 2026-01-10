@@ -5,7 +5,7 @@ import { uploadHandlerFunction, storage } from "./storage/resource";
 import { sqsProcessorLambda, migrationPostLambda } from "./functions/resource";
 import { Queue } from "aws-cdk-lib/aws-sqs";
 import { SqsEventSource } from "aws-cdk-lib/aws-lambda-event-sources";
-import { Duration, Stack } from "aws-cdk-lib";
+import { Duration, Fn, Stack } from "aws-cdk-lib";
 import {
   AuthorizationType,
   CognitoUserPoolsAuthorizer,
@@ -14,6 +14,7 @@ import {
   RestApi,
 } from "aws-cdk-lib/aws-apigateway";
 import { Policy, PolicyStatement } from "aws-cdk-lib/aws-iam";
+import { getSuffixFromStack } from "./utils";
 /**
  * @see https://docs.amplify.aws/react/build-a-backend/ to add storage, functions, and more
  */
@@ -29,8 +30,12 @@ const backend = defineBackend({
 backend.uploadHandlerFunction.resources.cfnResources.cfnFunction.environment;
 
 const sqsStack = backend.createStack("sqsStack");
-const myQueue = new Queue(sqsStack, "chiti-dev-sqs-stack", {
-  queueName: "migration-sqs",
+
+const myQueue = new Queue(sqsStack, `${process.env.ENV}-sqs-stack`, {
+  queueName: Fn.join("-", [
+    `migration-${process.env.ENV}-sqs`,
+    getSuffixFromStack(sqsStack),
+  ]),
   visibilityTimeout: Duration.minutes(1),
 });
 
@@ -45,12 +50,15 @@ myQueue.grantSendMessages(backend.uploadHandlerFunction.resources.lambda);
 
 const apiStack = backend.createStack("api-stack");
 
-const restApi = new RestApi(apiStack, "migration-rest-api", {
-  restApiName: "migration-api",
+const restApi = new RestApi(apiStack, `migration-${process.env.ENV}-rest-api`, {
+  restApiName: Fn.join("-", [
+    `migration-${process.env.ENV}-sqs`,
+    getSuffixFromStack(sqsStack),
+  ]),
   description: "rest api for migration related activities",
   deploy: true,
   deployOptions: {
-    stageName: "dev",
+    stageName: process.env.ENV?.toLocaleLowerCase(),
   },
   defaultCorsPreflightOptions: {
     allowOrigins: Cors.ALL_ORIGINS,
