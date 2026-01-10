@@ -28,7 +28,7 @@ export const handler: S3Handler = async (s3Event: S3Event) => {
   // });
 
   const command = new SendMessageCommand({
-    QueueUrl: "",
+    QueueUrl: env.SQS_QUEUE_URL,
     MessageBody: JSON.stringify({
       fileType: "managers",
       s3FileLink: "link-to-file-created-in-s3",
