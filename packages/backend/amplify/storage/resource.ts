@@ -3,9 +3,6 @@ import { defineStorage, defineFunction } from "@aws-amplify/backend";
 export const uploadHandlerFunction = defineFunction({
   name: "storage-on-upload-handler",
   entry: "./triggers/on-upload-handler.ts",
-  environment: {
-    SQS_QUEUE_URL: process.env.SQS_QUEUE_URL as string,
-  },
 });
 
 export const storage = defineStorage({
