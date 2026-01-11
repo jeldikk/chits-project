@@ -4,7 +4,7 @@ import { delay } from "@/utils/delay";
 export async function fetchManagers() {
   cookieBasedClient.models.Manager.list({
     filter: {
-      authorId: {
+      ownerId: {
         eq: "Kamal",
       },
     },

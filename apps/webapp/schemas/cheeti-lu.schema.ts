@@ -30,10 +30,7 @@ export const createPayloadSchema = z
     paataDate: z.number(),
     managerPaata: z.number(),
     memberCount: z.number(),
-    manager: z.object({
-      name: z.string(),
-      address: z.string(),
-    }),
+    managerId: z.string(),
     ownerId: z.string(),
   })
   .superRefine((data, ctx) => {

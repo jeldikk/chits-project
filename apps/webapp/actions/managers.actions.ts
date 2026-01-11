@@ -18,7 +18,7 @@ export async function createManagerAction(
   const rawFormData = {
     name: formData.get("name") as string,
     address: formData.get("address") as string,
-    authorId: formData.get("authorId") as string,
+    ownerId: formData.get("ownerId") as string,
   };
   const validationResult = managerPayloadSchema.safeParse(rawFormData);
   console.dir(
@@ -48,7 +48,7 @@ export async function createManagerAction(
   const manager = await cookieBasedClient.models.Manager.create({
     name: rawFormData.name,
     address: rawFormData.address,
-    authorId: rawFormData.authorId,
+    ownerId: rawFormData.ownerId,
   });
   console.dir({ manager }, { depth: null });
   return {

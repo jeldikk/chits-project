@@ -24,7 +24,7 @@ export default function ManagersList() {
   useEffect(() => {
     const subscription = client.models.Manager.observeQuery({
       filter: {
-        authorId: {
+        ownerId: {
           eq: authDetails?.userId,
         },
       },
