@@ -1,4 +1,5 @@
 import { cookieBasedClient } from "@/utils/amplify.server";
+import { formatCurrency } from "@/utils/formatters";
 
 type Props = {
   params: Promise<{ cheetiId: string }>;
@@ -22,10 +23,10 @@ export default async function CheetiDetailsPage(props: Props) {
           </div>
           <p className="tags">
             <div className="badge badge-dash badge-info mx-1">
-              {cheeti?.value} INR
+              {formatCurrency(cheeti?.value!, "INR")} INR
             </div>
             <div className="badge badge-dash badge-info mx-1">
-              {cheeti?.subscriptionAmount} INR
+              {formatCurrency(cheeti?.subscriptionAmount!, "INR")} INR
             </div>
             <div className="badge badge-dash badge-info mx-1">
               {cheeti?.memberCount} Members
