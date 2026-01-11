@@ -7,7 +7,7 @@ export default async function CheetiluPage() {
   const cheetilu = await fetchCheetilu();
   return (
     <div className="cheetilu-page px-2">
-      <h1>Cheeti-lu you have created</h1>
+      <h1 className="text-3xl">Cheeti-lu you have created</h1>
       <Link href="/cheetilu/create" className="btn btn-primary">
         Create New
       </Link>
