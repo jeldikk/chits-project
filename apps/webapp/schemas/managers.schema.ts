@@ -7,5 +7,5 @@ export const createPayloadSchema = z.object({
   address: z
     .string()
     .min(10, { message: "Field is required with atleast 10 characters" }),
-  authorId: z.string(),
+  ownerId: z.string(),
 });

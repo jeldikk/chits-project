@@ -70,7 +70,7 @@ export default function CheetiForm() {
               <div key={mgr.id} className="flex flex-row">
                 <input
                   type="radio"
-                  name="manager.name"
+                  name="managerId"
                   value={mgr.id}
                   className="radio"
                 />

@@ -1,6 +1,7 @@
 "use client";
 import MigrationFileUploader from "@/components/migration/file-uploader.component";
-import { FileUploader } from "@aws-amplify/ui-react-storage";
+
+export const dynamic = "force-dynamic";
 
 export default function AddNewNewFilePage() {
   return (

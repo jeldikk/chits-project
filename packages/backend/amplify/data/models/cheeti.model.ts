@@ -8,10 +8,7 @@ export const cheetiSchema = a
     }),
     CheetiStatus: a.enum(["READY", "IN_PROGRESS", "COMPLETED"]),
     Cheeti: a.model({
-      manager: a.customType({
-        name: a.string().required(),
-        address: a.string(),
-      }),
+      managerId: a.string().required(),
       name: a.string().required(),
       value: a.float().required(),
       subscriptionAmount: a.float().required(),

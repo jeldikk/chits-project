@@ -111,11 +111,7 @@ export default function ManagerDrawerForm() {
               </div>
             )}
             <form onSubmit={handleFormSubmit} className="p-4">
-              <input
-                type="hidden"
-                name="authorId"
-                value={authDetails?.userId}
-              />
+              <input type="hidden" name="ownerId" value={authDetails?.userId} />
               <fieldset className="fieldset">
                 <legend className="fieldset-legend">Manager Name</legend>
                 <input name="name" type="text" className="input w-full" />
