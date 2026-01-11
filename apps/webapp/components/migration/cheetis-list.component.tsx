@@ -9,6 +9,5 @@ export default async function CheetisFilesList() {
     },
   });
 
-  console.log({ cheetisResponse: response });
   return <div>Cheeti's files are rendered here</div>;
 }

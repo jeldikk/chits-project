@@ -14,8 +14,6 @@ export async function createCheetiAction(
   prevState: FormState,
   formData: FormData
 ): Promise<FormState> {
-  console.log({ prevState });
-  console.dir({ formData }, { depth: null });
   const rawFormData = {
     ownerId: formData.get("ownerId"),
     managerId: formData.get("managerId"),
@@ -34,11 +32,8 @@ export async function createCheetiAction(
     paataDate: Number(formData.get("paataDate")),
     managerPaata: Number(formData.get("managerPaata")),
     memberCount: Number(formData.get("memberCount")),
-    // status: formData.get("status"),
   };
-  console.log({ rawFormData });
   const validationResult = createPayloadSchema.safeParse(rawFormData);
-  console.log(JSON.stringify(validationResult, null, 2));
 
   if (!validationResult.success) {
     return {
@@ -82,7 +77,6 @@ export async function createCheetiAction(
     memberCount,
     status: "READY",
   });
-  console.dir({ cheetiPaata }, { depth: null });
 
   revalidatePath("/cheetilu");
 

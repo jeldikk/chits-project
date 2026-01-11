@@ -37,8 +37,6 @@ export default function ManagerDrawerForm() {
   const [errors, setErrors] = useState(state.errors);
 
   useEffect(() => {
-    console.log({ state });
-    console.log("state has been changed");
     if (!state.success) {
       setErrors(state.errors);
     } else {
@@ -53,11 +51,9 @@ export default function ManagerDrawerForm() {
   function handleFormSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = event.target;
-    console.log({ data });
 
     const formData = new FormData(event.currentTarget);
     // formData.append('name', event.currentTarget.get)
-    console.log({ currentTarget: event.currentTarget });
 
     startTransition(() => {
       formAction(formData);

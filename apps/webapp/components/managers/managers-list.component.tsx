@@ -31,7 +31,6 @@ export default function ManagersList() {
     }).subscribe({
       next: (nextData) => {
         const { items, isSynced } = nextData;
-        console.log({ items, isSynced });
         // setManagers([...items]);
         dispatch(setManagers([...items]));
       },

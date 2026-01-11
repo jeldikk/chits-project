@@ -30,14 +30,12 @@ export default function CheetiForm() {
   const managersLoading = useAppSelector(selectManagersLoading);
   const authDetails = useAppSelector(selectAuthDetails);
   const dispatch = useAppDispatch();
-  console.log({ managers, errors, formState });
   useEffect(() => {
     // if managers list is zero, we have to fetch data here
     if (!managers.length) {
       dispatch(fetchManagers())
         .unwrap()
         .then(async (response) => {
-          console.log({ response });
           const parsedBody = await response.json();
           dispatch(setManagers(parsedBody.data));
         });
@@ -45,10 +43,8 @@ export default function CheetiForm() {
   }, []);
 
   function handleOnSubmitForm(event: React.FormEvent<HTMLFormElement>) {
-    console.log("Submitting form...");
     event.preventDefault();
     handleSubmit((payload) => {
-      console.log({ payload });
       startTransition(() => {
         formAction(new FormData(formRef.current!));
       });

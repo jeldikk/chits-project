@@ -5,7 +5,6 @@ import Link from "next/link";
 
 export default async function CheetiluPage() {
   const cheetilu = await fetchCheetilu();
-  console.dir({ cheetilu }, { depth: null });
   return (
     <div className="cheetilu-page px-2">
       <h1>Cheeti-lu you have created</h1>
