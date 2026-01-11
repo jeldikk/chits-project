@@ -3,6 +3,9 @@ import type { NextRequest } from "next/server";
 
 export async function middleware(req: NextRequest) {
   console.log("I am calling from middleware");
+  console.dir({
+    url: req.url,
+  });
 }
 
 export const config = {

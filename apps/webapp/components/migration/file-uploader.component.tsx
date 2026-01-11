@@ -3,14 +3,9 @@
 import { FileUploader } from "@aws-amplify/ui-react-storage";
 
 export default function MigrationFileUploader() {
-  function handleUploadError(err: any) {
-    console.log("Errored while uploading file: ", err);
-  }
+  function handleUploadError(err: any) {}
 
-  function handleUploadSuccess(successEvent: any) {
-    console.log({ successEvent });
-    console.log("Successfully uploaded file");
-  }
+  function handleUploadSuccess(successEvent: any) {}
   return (
     <div className="file-uploader">
       <FileUploader

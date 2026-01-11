@@ -32,15 +32,9 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(logOutUser.pending, (state, action) => {
-        console.log("logout user action is pending");
-      })
-      .addCase(logOutUser.fulfilled, (state, action) => {
-        console.log("logOut user is fulfilled");
-      })
-      .addCase(logOutUser.rejected, (state, action) => {
-        console.log("logOut is rejected");
-      });
+      .addCase(logOutUser.pending, (state, action) => {})
+      .addCase(logOutUser.fulfilled, (state, action) => {})
+      .addCase(logOutUser.rejected, (state, action) => {});
   },
 });
 

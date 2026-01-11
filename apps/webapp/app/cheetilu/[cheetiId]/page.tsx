@@ -10,7 +10,6 @@ export default async function CheetiDetailsPage(props: Props) {
     id: cheetiId,
   });
   const cheetiPaatalu = await cheeti?.cheetiPaatalu();
-  console.log({ cheeti, cheetiPaatalu });
   return (
     <div className="cheeti-details">
       <h1>Here we are going to render the details of {cheetiId} cheeti</h1>

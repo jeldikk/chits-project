@@ -21,13 +21,7 @@ export async function createManagerAction(
     ownerId: formData.get("ownerId") as string,
   };
   const validationResult = managerPayloadSchema.safeParse(rawFormData);
-  console.dir(
-    {
-      issues: validationResult.error?.issues,
-      flatten: validationResult.error?.flatten(),
-    },
-    { depth: null }
-  );
+
   if (!validationResult.success) {
     const errorMap = {};
     // validationResult.error?.errors.map((err) => {});
@@ -37,20 +31,12 @@ export async function createManagerAction(
       errors: validationResult.error.flatten().fieldErrors,
     };
   }
-  console.log({
-    rawFormData,
-    prevState,
-  });
-  //   const validation = createPayloadSchema.parse(rawFormData);
-  //   console.log({ validation });
-  //   console.log(rawFormData);
-  //   await delay(5000);
+
   const manager = await cookieBasedClient.models.Manager.create({
     name: rawFormData.name,
     address: rawFormData.address,
     ownerId: rawFormData.ownerId,
   });
-  console.dir({ manager }, { depth: null });
   return {
     success: true,
     message: "Manager has been created",

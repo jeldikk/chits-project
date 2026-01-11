@@ -29,9 +29,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  console.log("I am from Layout file");
   const authDetails = await getAuthUserDetails();
-  console.log({ authDetails });
   return (
     <html lang="en">
       <body className={`antialiased`}>

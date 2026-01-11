@@ -9,6 +9,5 @@ export default async function CheetiPaataluFilesList() {
     },
   });
 
-  console.log({ cheetiPaatalu: response });
   return <div>Cheeti Paatalu list is rendered here</div>;
 }

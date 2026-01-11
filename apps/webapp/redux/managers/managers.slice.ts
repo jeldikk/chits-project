@@ -24,15 +24,12 @@ const managersSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchManagers.pending, (state, action) => {
-        console.log("I am fetching managers here");
         state.isLoading = true;
       })
       .addCase(fetchManagers.fulfilled, (state, action) => {
-        console.log("I am fetching managers fulfilled");
         state.isLoading = false;
       })
       .addCase(fetchManagers.rejected, (state, action) => {
-        console.log("I am fetching managers rejected");
         state.isLoading = false;
       });
   },

@@ -7,9 +7,7 @@ import Link from "next/link";
 export default function Header() {
   const authDetails = useAppSelector(selectAuthDetails);
   const isAdmin = useAppSelector(selectIsAdmin);
-  // const { authDetails } = useAuthDetailsContext();
-  // const { authUser, isAdmin } = authContext.authDetails;
-  console.log({ authDetails });
+
   return (
     <header className="navbar shadow-sm ">
       <div className="flex-1">

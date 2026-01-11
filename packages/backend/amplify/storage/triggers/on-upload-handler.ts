@@ -15,17 +15,9 @@ const client = generateClient<Schema>();
 const sqsClient = new SQSClient();
 
 export const handler: S3Handler = async (s3Event: S3Event) => {
-  console.log("s3Event :", JSON.stringify(s3Event, null, 2));
   const objectKeys = s3Event.Records.map((record) => {
-    console.log("record :", JSON.stringify(record, null, 2));
     return record.s3.object.key;
   });
-
-  console.log("Upload handler invoked for objects :", { objectKeys });
-  // await client.models.Manager.create({
-  //   name: "John Doe",
-  //   address: "America",
-  // });
 
   const command = new SendMessageCommand({
     QueueUrl: env.SQS_QUEUE_URL,
@@ -37,7 +29,6 @@ export const handler: S3Handler = async (s3Event: S3Event) => {
   });
 
   await sqsClient.send(command);
-  console.log("SQS Message is sent to Queue");
 
   // we have to push data to SQS queue
 };
