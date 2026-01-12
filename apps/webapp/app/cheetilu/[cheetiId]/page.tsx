@@ -1,5 +1,5 @@
 import { cookieBasedClient } from "@/utils/amplify.server";
-import { formatCurrency } from "@/utils/formatters";
+import { formatCurrency, formatOrdinals } from "@/utils/formatters";
 
 type Props = {
   params: Promise<{ cheetiId: string }>;
@@ -49,11 +49,11 @@ export default async function CheetiDetailsPage(props: Props) {
             <div className="misc-details my-2">
               <p className="paata-date">
                 <span className="font-bold">Paata Date: </span>
-                {cheeti?.paataDate} of every month
+                {formatOrdinals(cheeti?.paataDate!)} of every month
               </p>
               <p className="manager-paata">
                 <span className="font-bold">Manager Paata: </span>
-                {cheeti?.managerPaata} of tenure
+                {formatOrdinals(cheeti?.managerPaata!)} of tenure
               </p>
             </div>
           </div>

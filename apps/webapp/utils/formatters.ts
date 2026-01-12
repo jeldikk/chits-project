@@ -5,8 +5,22 @@ export function formatCurrency(amount: number, formatType: "INR"): string {
   return amount.toString();
 }
 
-export const inrFormatter = new Intl.NumberFormat("en-IN", {
+const inrFormatter = new Intl.NumberFormat("en-IN", {
   style: "currency",
   currency: "INR",
   minimumFractionDigits: 2,
 });
+
+export function formatOrdinals(num: number): string {
+  const suffixes = new Map([
+    ["one", "st"],
+    ["two", "nd"],
+    ["few", "rd"],
+    ["other", "th"],
+  ]);
+
+  const enCardinal = new Intl.PluralRules("en-US", { type: "ordinal" });
+  const cardinality = enCardinal.select(num);
+  const suffix = suffixes.get(cardinality);
+  return `${num}${suffix}`;
+}
