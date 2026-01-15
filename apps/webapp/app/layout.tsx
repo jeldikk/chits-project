@@ -9,16 +9,6 @@ import Header from "@/components/header/header.component";
 import { getAuthUserDetails } from "@/utils/amplify.server";
 import StoreProvider from "@/context/store-provider.context";
 
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
-
 export const metadata: Metadata = {
   title: "Cheeti Paata Records",
   description: "App to Manage your Cheeti records with Prediction",

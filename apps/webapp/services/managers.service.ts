@@ -1,5 +1,4 @@
 import { cookieBasedClient } from "@/utils/amplify.server";
-import { delay } from "@/utils/delay";
 
 export async function fetchManagers() {
   cookieBasedClient.models.Manager.list({
@@ -9,7 +8,6 @@ export async function fetchManagers() {
       },
     },
   });
-  await delay(5000);
   return [
     {
       name: "John Doe",

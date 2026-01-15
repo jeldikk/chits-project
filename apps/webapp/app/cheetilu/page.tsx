@@ -1,6 +1,5 @@
 import CheetiCard from "@/components/cheeti-lu/cheeti-card.component";
 import { fetchCheetilu } from "@/services/cheetilu.service";
-import { delay } from "@/utils/delay";
 import Link from "next/link";
 
 export default async function CheetiluPage() {
